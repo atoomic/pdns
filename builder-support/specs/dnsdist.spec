@@ -153,6 +153,10 @@ fi
 %endif
 %if 0%{?rhel} >= 7
 %systemd_post %{name}.service
+if [ $1 -eq 2 ] ; then
+    # on update make sure systemd reload the service
+    systemctl daemon-reload
+fi
 %endif
 
 %preun
